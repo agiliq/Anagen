@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center" >
+    android:gravity="center"
+    android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/edit_text"
+        android:id="@+id/inputWordField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/inputWordField" />
@@ -14,7 +14,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/getAnagramsButton"
-        android:onClick="getAnagramsButtonHandler" />
+        android:onClick="getAnagramsButtonHandler"
+        android:text="@string/getAnagramsButton" />
 
 </LinearLayout>
