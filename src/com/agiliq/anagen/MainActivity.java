@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 			Log.d(localTAG, "inputWord = " + inputWord);
 		
 		getWordListSet();
-        	Log.d("wordlist", wordListSet.toString());
+        	Log.d(localTAG+"-wordlist", wordListSet.toString());
 
 		getAnagrams("", inputWord);
 	}
