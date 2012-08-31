@@ -5,10 +5,16 @@
     android:gravity="center"
     android:orientation="vertical" >
 
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/commons_in_all_layouts" />
+
     <ListView
         android:id="@+id/anagramslist"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="0dip"
+        android:layout_weight="1" >
     </ListView>
 
 </LinearLayout>
