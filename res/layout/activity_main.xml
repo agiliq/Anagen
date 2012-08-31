@@ -5,16 +5,9 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/inputWordField"
+    <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/inputWordField" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="getAnagramsButtonHandler"
-        android:text="@string/getAnagramsButton" />
+        layout="@layout/commons_in_all_layouts" />
 
 </LinearLayout>
