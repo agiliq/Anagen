@@ -1,5 +1,7 @@
 package com.agiliq.anagen;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,5 +20,9 @@ public class AnagramsActivity extends Activity {
         
         Intent intent=getIntent();
         	Log.d(localTAG, intent.toString());
+        	
+        ArrayList<String> recievedAnagrams=intent.getStringArrayListExtra("MainActivity.-anagrams");
+        	Log.d(localTAG+"-recievedAnagrams", recievedAnagrams.toString());
+        
     }
 }
