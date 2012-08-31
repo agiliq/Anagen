@@ -19,7 +19,8 @@ public class MainActivity extends Activity {
 
 	private static String TAG = "MainActivity.", inputWord;
 	private TextView inputWordField;
-	private TreeSet<String> wordListSet,anagramsSet;
+	static TreeSet<String> wordListSet;
+	private TreeSet<String> anagramsSet;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
