@@ -4,10 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Set;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,7 +19,7 @@ public class MainActivity extends Activity {
 
 	private static String TAG = "MainActivity.", inputWord;
 	private TextView inputWordField;
-	private Set<String> wordListSet;
+	private TreeSet<String> wordListSet,anagramsSet;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,19 +42,28 @@ public class MainActivity extends Activity {
 			Log.d(localTAG, "inputWord = " + inputWord);
 		
 		getWordListSet();
-        	Log.d(localTAG+"-wordlist", wordListSet.toString());
 
+		anagramsSet=new TreeSet<String>();
 		getAnagrams("", inputWord);
+			Log.d(localTAG, anagramsSet.toString());
+		
+		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
+			Log.d(localTAG, anagramsList.toString());
+		
+		Intent intent=new Intent(this, AnagramsActivity.class);
+		intent.putStringArrayListExtra(TAG+"-anagrams", anagramsList);
+			Log.d(localTAG, intent.toString());
+		startActivity(intent);
 	}
 	
 //	getWordListSet() accesses wordlist.txt and retrieves its contents into wordListSet.
 	private void getWordListSet(){
 		wordListSet = new TreeSet<String>();
-		InputStream is = getResources().openRawResource(R.raw.wordlist);
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		InputStream wordlistStream = getResources().openRawResource(R.raw.wordlist);
+		BufferedReader wordlistReader = new BufferedReader(new InputStreamReader(wordlistStream));
         String readLine = null;
         try {
-            while ((readLine = br.readLine()) != null) {
+            while ((readLine = wordlistReader.readLine()) != null) {
             	wordListSet.add(readLine);
             }
         } catch (IOException e) {
@@ -64,10 +74,10 @@ public class MainActivity extends Activity {
 //	getAnagrams() performs permutations of the inputWord and checks each result to the wordListSet.
 	private void getAnagrams(String prefix, String str) {
 		int n = str.length();
-		String localTAG=TAG.concat("permute");
 		if (n == 0){
 			if(wordListSet.contains(prefix)){
-				Log.d(localTAG, prefix);
+				anagramsSet.add(prefix);
+					Log.d(TAG+"getAnagrams", prefix);
 			}
 		}
 		else {
