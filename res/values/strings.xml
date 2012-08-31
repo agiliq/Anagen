@@ -3,7 +3,7 @@
     <string name="app_name">Anagen</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="inputWordField">Enter a word to find it\'s anagrams</string>
+    <string name="inputWordField">Enter a word to find its anagrams</string>
     <string name="getAnagramsButton">Show Anagrams</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_anagrams">Anagrams:</string>

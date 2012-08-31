@@ -22,7 +22,6 @@ public class AnagramsActivity extends Activity {
         
         Intent intent=getIntent();
         	Log.d(localTAG, intent.toString());
-        	
         ArrayList<String> recievedAnagrams=intent.getStringArrayListExtra("MainActivity.-anagrams");
         	Log.d(localTAG+"-recievedAnagrams", recievedAnagrams.toString());
         
