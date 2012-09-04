@@ -30,6 +30,21 @@ public class MainActivity extends Activity {
 		inputWordField = (TextView) findViewById(R.id.inputWordField);
 		getWordListSet();
 	}
+	
+//	getWordListSet() accesses wordlist.txt and retrieves its contents into wordListSet.
+	private void getWordListSet(){
+		wordListSet = new TreeSet<String>();
+		InputStream wordlistStream = getResources().openRawResource(R.raw.wordlist);
+		BufferedReader wordlistReader = new BufferedReader(new InputStreamReader(wordlistStream));
+        String readLine = null;
+        try {
+            while ((readLine = wordlistReader.readLine()) != null) {
+            	wordListSet.add(readLine);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,21 +69,6 @@ public class MainActivity extends Activity {
 		intent.putStringArrayListExtra(TAG+"-anagrams", anagramsList);
 			Log.d(localTAG, intent.toString());
 		startActivity(intent);
-	}
-	
-//	getWordListSet() accesses wordlist.txt and retrieves its contents into wordListSet.
-	private void getWordListSet(){
-		wordListSet = new TreeSet<String>();
-		InputStream wordlistStream = getResources().openRawResource(R.raw.wordlist);
-		BufferedReader wordlistReader = new BufferedReader(new InputStreamReader(wordlistStream));
-        String readLine = null;
-        try {
-            while ((readLine = wordlistReader.readLine()) != null) {
-            	wordListSet.add(readLine);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 	}
 
 //	getAnagrams() performs permutations of the inputWord and checks each result to the wordListSet.
