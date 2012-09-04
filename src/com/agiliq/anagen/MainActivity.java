@@ -28,33 +28,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		inputWordField = (TextView) findViewById(R.id.inputWordField);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-
-	public void getAnagramsButtonHandler(View getAnagramsButton) {
-		String localTAG = TAG.concat("getAnagramsButtonHandler");
-			Log.d(localTAG, "getAnagramsButton Pressed");
-		inputWord = inputWordField.getText().toString().toLowerCase();
-			Log.d(localTAG, "inputWord = " + inputWord);
-		
 		getWordListSet();
-
-		anagramsSet=new TreeSet<String>();
-		getAnagrams("", inputWord);
-			Log.d(localTAG, anagramsSet.toString());
-		
-		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
-			Log.d(localTAG, anagramsList.toString());
-		
-		Intent intent=new Intent(this, AnagramsActivity.class);
-		intent.putStringArrayListExtra(TAG+"-anagrams", anagramsList);
-			Log.d(localTAG, intent.toString());
-		startActivity(intent);
 	}
 	
 //	getWordListSet() accesses wordlist.txt and retrieves its contents into wordListSet.
@@ -70,6 +44,31 @@ public class MainActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
+
+	public void getAnagramsButtonHandler(View getAnagramsButton) {
+		String localTAG = TAG.concat("getAnagramsButtonHandler");
+			Log.d(localTAG, "getAnagramsButton Pressed");
+		inputWord = inputWordField.getText().toString().toLowerCase();
+			Log.d(localTAG, "inputWord = " + inputWord);
+
+		anagramsSet=new TreeSet<String>();
+		getAnagrams("", inputWord);
+			Log.d(localTAG, anagramsSet.toString());
+		
+		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
+			Log.d(localTAG, anagramsList.toString());
+		
+		Intent intent=new Intent(this, AnagramsActivity.class);
+		intent.putStringArrayListExtra(TAG+"-anagrams", anagramsList);
+			Log.d(localTAG, intent.toString());
+		startActivity(intent);
 	}
 
 //	getAnagrams() performs permutations of the inputWord and checks each result to the wordListSet.
