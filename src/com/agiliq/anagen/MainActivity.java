@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		inputWordField = (TextView) findViewById(R.id.inputWordField);
+		getWordListSet();
 	}
 
 	@Override
@@ -41,8 +42,6 @@ public class MainActivity extends Activity {
 			Log.d(localTAG, "getAnagramsButton Pressed");
 		inputWord = inputWordField.getText().toString().toLowerCase();
 			Log.d(localTAG, "inputWord = " + inputWord);
-		
-		getWordListSet();
 
 		anagramsSet=new TreeSet<String>();
 		getAnagrams("", inputWord);
