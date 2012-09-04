@@ -31,7 +31,7 @@ public class AnagramsActivity extends Activity {
         
         Intent intent=getIntent();
         	Log.d(localTAG, intent.toString());
-        ArrayList<String> recievedAnagrams=intent.getStringArrayListExtra("MainActivity.-anagrams");
+        ArrayList<String> recievedAnagrams=intent.getStringArrayListExtra("com.agiliq.anagen."+MainActivity.TAG+"-anagrams");
         	Log.d(localTAG+"-recievedAnagrams", recievedAnagrams.toString());
         
         ArrayAdapter<String> anagramsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recievedAnagrams);
