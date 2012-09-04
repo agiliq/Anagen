@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	private static String TAG = "MainActivity.", inputWord;
+	static String TAG = "MainActivity.", inputWord;
 	private TextView inputWordField;
 	static TreeSet<String> wordListSet;
 	private TreeSet<String> anagramsSet;
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
 			Log.d(localTAG, anagramsList.toString());
 		
 		Intent intent=new Intent(this, AnagramsActivity.class);
-		intent.putStringArrayListExtra(TAG+"-anagrams", anagramsList);
+		intent.putStringArrayListExtra("com.agiliq.anagen."+TAG+"-anagrams", anagramsList);
 			Log.d(localTAG, intent.toString());
 		startActivity(intent);
 	}
