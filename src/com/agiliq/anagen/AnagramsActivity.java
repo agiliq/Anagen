@@ -26,8 +26,12 @@ public class AnagramsActivity extends Activity {
         
         String localTAG = TAG.concat("onCreate");
         
-        anagramsList=(ListView)findViewById(R.id.anagramslist);
         inputWordField = (TextView) findViewById(R.id.inputWordField);
+        
+        anagramsList=(ListView)findViewById(R.id.anagramslist);
+	        TextView listViewHeader=new TextView(this);
+	        listViewHeader.setText("  Anagrams:");
+        anagramsList.addHeaderView(listViewHeader);
         
         Intent intent=getIntent();
         	Log.d(localTAG, intent.toString());
