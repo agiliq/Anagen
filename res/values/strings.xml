@@ -6,5 +6,6 @@
     <string name="inputWordField">Enter a word to find its anagrams</string>
     <string name="getAnagramsButton">Show Anagrams</string>
     <string name="title_activity_anagrams">Anagrams:</string>
+    <string name="getAnagramsCandidateButton">Show Candidates</string>
 
 </resources>
