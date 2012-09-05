@@ -63,9 +63,12 @@ public class MainActivity extends Activity {
 				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
 				return;
 			}
+			
+		String joinedPhrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
+			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
 
 		anagramsSet=new TreeSet<String>();
-		getAnagrams("", inputWord);
+		getAnagrams("", joinedPhrase);
 			Log.d(localTAG, anagramsSet.toString());
 		
 		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);

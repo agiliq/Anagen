@@ -56,8 +56,11 @@ public class AnagramsActivity extends Activity {
 				return;
 			}
 			
+		String joinedPhrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
+			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
+			
 		anagramsSet=new TreeSet<String>();
-		getAnagrams("", inputWord);
+		getAnagrams("", joinedPhrase);
 			Log.d(localTAG, anagramsSet.toString());
 			
 		ArrayList<String> newAnagrams= new ArrayList<String>(anagramsSet);
