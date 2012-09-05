@@ -5,11 +5,11 @@
 
     <EditText
         android:id="@+id/inputWordField"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="@string/inputWordField"
-        android:singleLine="true"
-        android:selectAllOnFocus="true" />
+        android:selectAllOnFocus="true"
+        android:singleLine="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"
