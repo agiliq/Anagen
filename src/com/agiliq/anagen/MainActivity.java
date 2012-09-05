@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -57,9 +58,17 @@ public class MainActivity extends Activity {
 			Log.d(localTAG, "getAnagramsButton Pressed");
 		inputWord = inputWordField.getText().toString().toLowerCase();
 			Log.d(localTAG, "inputWord = " + inputWord);
+			
+			if(inputWord.equals("")){		//Empty Field Validation
+				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
+				return;
+			}
+			
+		String joinedPhrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
+			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
 
 		anagramsSet=new TreeSet<String>();
-		getAnagrams("", inputWord);
+		getAnagrams("", joinedPhrase);
 			Log.d(localTAG, anagramsSet.toString());
 		
 		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
@@ -84,5 +93,20 @@ public class MainActivity extends Activity {
 			for (int i = 0; i < n; i++)
 				getAnagrams(prefix + str.charAt(i),	str.substring(0, i) + str.substring(i + 1, n));
 		}
+	}
+	
+	public void getAnagramsCandidateButtonHandler(View getAnagramsCandidateButton){
+		String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
+			Log.d(localTAG, "getAnagramsCandidateButton pressed");
+		inputWord = inputWordField.getText().toString().toLowerCase();
+			Log.d(localTAG, "inputWord = " + inputWord);
+			
+			if(inputWord.equals("")){		//Empty Field Validation
+				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
+				return;
+			}
+		
+		String joinedPhrase=inputWord.replaceAll("[^a-z]+", "");	//Eliminated special characters
+			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
 	}
 }

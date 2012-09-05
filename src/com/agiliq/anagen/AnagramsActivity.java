@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AnagramsActivity extends Activity {
 
@@ -26,8 +27,12 @@ public class AnagramsActivity extends Activity {
         
         String localTAG = TAG.concat("onCreate");
         
-        anagramsList=(ListView)findViewById(R.id.anagramslist);
         inputWordField = (TextView) findViewById(R.id.inputWordField);
+        
+        anagramsList=(ListView)findViewById(R.id.anagramslist);
+	        TextView listViewHeader=new TextView(this);
+	        listViewHeader.setText("  Anagrams:");
+        anagramsList.addHeaderView(listViewHeader);
         
         Intent intent=getIntent();
         	Log.d(localTAG, intent.toString());
@@ -43,12 +48,19 @@ public class AnagramsActivity extends Activity {
     public void getAnagramsButtonHandler(View getAnagramsButton){
     	String localTAG = TAG.concat("getAnagramsButtonHandler");
 			Log.d(localTAG, "getAnagramsButton Pressed");
-			
 		inputWord = inputWordField.getText().toString().toLowerCase();
 			Log.d(localTAG, "inputWord = " + inputWord);
 			
+			if(inputWord.equals("")){		//Empty Field Validation
+				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
+				return;
+			}
+			
+		String joinedPhrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
+			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
+			
 		anagramsSet=new TreeSet<String>();
-		getAnagrams("", inputWord);
+		getAnagrams("", joinedPhrase);
 			Log.d(localTAG, anagramsSet.toString());
 			
 		ArrayList<String> newAnagrams= new ArrayList<String>(anagramsSet);
