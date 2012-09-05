@@ -85,4 +85,14 @@ public class MainActivity extends Activity {
 				getAnagrams(prefix + str.charAt(i),	str.substring(0, i) + str.substring(i + 1, n));
 		}
 	}
+	
+	public void getAnagramsCandidateButtonHandler(View getAnagramsCandidateButton){
+		String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
+			Log.d(localTAG, "getAnagramsCandidateButton pressed");
+		inputWord = inputWordField.getText().toString().toLowerCase();
+			Log.d(localTAG, "inputWord = " + inputWord);
+		
+		String joinedPhrase=inputWord.replaceAll("[^a-z]+", "");	//Eliminated special characters
+			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
+	}
 }
