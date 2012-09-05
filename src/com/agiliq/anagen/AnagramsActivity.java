@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AnagramsActivity extends Activity {
 
@@ -47,9 +48,13 @@ public class AnagramsActivity extends Activity {
     public void getAnagramsButtonHandler(View getAnagramsButton){
     	String localTAG = TAG.concat("getAnagramsButtonHandler");
 			Log.d(localTAG, "getAnagramsButton Pressed");
-			
 		inputWord = inputWordField.getText().toString().toLowerCase();
 			Log.d(localTAG, "inputWord = " + inputWord);
+			
+			if(inputWord.equals("")){		//Empty Field Validation
+				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
+				return;
+			}
 			
 		anagramsSet=new TreeSet<String>();
 		getAnagrams("", inputWord);

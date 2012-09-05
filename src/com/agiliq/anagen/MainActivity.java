@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -57,6 +58,11 @@ public class MainActivity extends Activity {
 			Log.d(localTAG, "getAnagramsButton Pressed");
 		inputWord = inputWordField.getText().toString().toLowerCase();
 			Log.d(localTAG, "inputWord = " + inputWord);
+			
+			if(inputWord.equals("")){		//Empty Field Validation
+				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
+				return;
+			}
 
 		anagramsSet=new TreeSet<String>();
 		getAnagrams("", inputWord);
@@ -91,6 +97,11 @@ public class MainActivity extends Activity {
 			Log.d(localTAG, "getAnagramsCandidateButton pressed");
 		inputWord = inputWordField.getText().toString().toLowerCase();
 			Log.d(localTAG, "inputWord = " + inputWord);
+			
+			if(inputWord.equals("")){		//Empty Field Validation
+				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
+				return;
+			}
 		
 		String joinedPhrase=inputWord.replaceAll("[^a-z]+", "");	//Eliminated special characters
 			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
