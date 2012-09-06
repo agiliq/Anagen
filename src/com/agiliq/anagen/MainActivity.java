@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Stack;
 import java.util.TreeSet;
 
 import android.app.Activity;
@@ -21,7 +23,9 @@ public class MainActivity extends Activity {
 	static String TAG = "MainActivity.", inputWord;
 	private TextView inputWordField;
 	static TreeSet<String> wordListSet;
-	private TreeSet<String> anagramsSet;
+	private TreeSet<String> anagramsSet, permutationSet;
+	private Iterator<String> itr;
+	Stack<String> correct;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,11 +68,11 @@ public class MainActivity extends Activity {
 				return;
 			}
 			
-		String joinedPhrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
-			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
+		String phrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
+			Log.d(localTAG, "phrase = " + phrase);
 
 		anagramsSet=new TreeSet<String>();
-		getAnagrams("", joinedPhrase);
+		getAnagrams("", phrase);
 			Log.d(localTAG, anagramsSet.toString());
 		
 		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
@@ -80,13 +84,12 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-//	getAnagrams() performs permutations of the inputWord and checks each result to the wordListSet.
+//	getAnagrams() performs permutations of the phrase and checks each result to the wordListSet.
 	private void getAnagrams(String prefix, String str) {
 		int n = str.length();
 		if (n == 0){
 			if(wordListSet.contains(prefix)){
 				anagramsSet.add(prefix);
-					Log.d(TAG+"getAnagrams", prefix);
 			}
 		}
 		else {
@@ -108,5 +111,59 @@ public class MainActivity extends Activity {
 		
 		String joinedPhrase=inputWord.replaceAll("[^a-z]+", "");	//Eliminated special characters
 			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
+		
+		permutationSet= new TreeSet<String>();
+		getAllPermutations("", joinedPhrase);
+			Log.d(localTAG, permutationSet.toString());
+		
+		String poppedoutString;
+		int length_of_stack_contents;
+		Stack<String> temp;
+		itr=permutationSet.iterator();
+		while(itr.hasNext()){
+			correct=new Stack<String>();
+			length_of_stack_contents=0;
+			getCandidate(itr.next());
+//				Log.d(localTAG+"-stack", correct.toString());
+			temp=new Stack<String>();
+			while(!correct.empty()){
+				poppedoutString=correct.pop();
+				length_of_stack_contents+=poppedoutString.length();
+				temp.push(poppedoutString);
+			}
+			if(length_of_stack_contents==joinedPhrase.length()){
+				Log.d(localTAG+"-stack", temp.toString());
+			}
+		}
+	}
+	
+//	getAllPermutations() performs permutations of the joinedPhrase.
+	private void getAllPermutations(String prefix, String str) {
+		int n = str.length();
+		if (n == 0){
+			permutationSet.add(prefix);
+		}
+		else {
+			for (int i = 0; i < n; i++)
+				getAllPermutations(prefix + str.charAt(i),	str.substring(0, i) + str.substring(i + 1, n));
+		}
+	}
+	
+	private void getCandidate(String str){
+		String first, last=null;
+		int stringLength=str.length();
+		
+		for(int i=0; i<str.length(); i++, stringLength--){
+			first=str.substring(0, stringLength);
+			if(stringLength!=str.length())
+				last=str.substring(stringLength);
+			
+			if(wordListSet.contains(first)){
+				correct.push(first);
+				if(stringLength!=str.length())
+					getCandidate(last);
+				break;
+			}
+		}
 	}
 }

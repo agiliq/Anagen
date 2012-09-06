@@ -56,11 +56,11 @@ public class AnagramsActivity extends Activity {
 				return;
 			}
 			
-		String joinedPhrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
-			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
+		String phrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
+			Log.d(localTAG, "phrase = " + phrase);
 			
 		anagramsSet=new TreeSet<String>();
-		getAnagrams("", joinedPhrase);
+		getAnagrams("", phrase);
 			Log.d(localTAG, anagramsSet.toString());
 			
 		ArrayList<String> newAnagrams= new ArrayList<String>(anagramsSet);
@@ -72,13 +72,12 @@ public class AnagramsActivity extends Activity {
     	anagramsList.setAdapter(anagramsAdapter);
     }
     
-//	getAnagrams() performs permutations of the inputWord and checks each result to the wordListSet.
+//	getAnagrams() performs permutations of the phrase and checks each result to the wordListSet.
 	private void getAnagrams(String prefix, String str) {
 		int n = str.length();
 		if (n == 0){
 			if(MainActivity.wordListSet.contains(prefix)){
 				anagramsSet.add(prefix);
-					Log.d(TAG+"getAnagrams", prefix);
 			}
 		}
 		else {
