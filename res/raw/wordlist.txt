@@ -2452,7 +2452,6 @@ aye
 azalea
 azimuth
 azure
-b
 baa
 babble
 babbler
@@ -4707,7 +4706,6 @@ byte
 byway
 byword
 byzantine
-c
 cab
 cabal
 cabala
@@ -8542,7 +8540,6 @@ cytosine
 czar
 czarina
 czarist
-d
 dab
 dabber
 dabble
@@ -11011,7 +11008,6 @@ dyslexic
 dyspepsia
 dyspeptic
 dysprosium
-e
 each
 eager
 eagerly
@@ -12652,7 +12648,6 @@ eyetooth
 eyewash
 eyewitness
 eyrie
-f
 fa
 fable
 fabled
@@ -14464,7 +14459,6 @@ fuzz
 fuzzily
 fuzziness
 fuzzy
-g
 gab
 gabardine
 gabbiness
@@ -15750,7 +15744,6 @@ gyro
 gyroscope
 gyroscopic
 gyve
-h
 ha
 haberdasher
 haberdashery
@@ -19313,7 +19306,6 @@ ivied
 ivories
 ivory
 ivy
-j
 jab
 jabber
 jabberer
@@ -19650,7 +19642,6 @@ jute
 juvenile
 juxtapose
 juxtaposition
-k
 kabob
 kabuki
 kaddish
@@ -19922,7 +19913,6 @@ kudos
 kudzu
 kumquat
 kvetch
-l
 la
 lab
 label
@@ -21201,7 +21191,6 @@ lyrically
 lyricism
 lyricist
 lyrics
-m
 ma
 ma'am
 macabre
@@ -23357,7 +23346,6 @@ mythological
 mythologist
 mythologize
 mythology
-n
 'n'
 nab
 nabob
@@ -24384,8 +24372,6 @@ nymph
 nymphet
 nymphomania
 nymphomaniac
-O
-o
 o'
 oaf
 oafish
@@ -25480,7 +25466,6 @@ oxymoron
 oyster
 ozone
 ozone-friendly
-p
 pa
 pablum
 pabulum
@@ -28661,7 +28646,6 @@ pyrotechnic
 pyrotechnics
 python
 pyx
-q
 qua
 quack
 quackery
@@ -28847,7 +28831,6 @@ quoth
 quotidian
 quotient
 qwerty
-r
 rabbet
 rabbi
 rabbinate
@@ -31031,7 +31014,6 @@ ruthlessly
 ruthlessness
 rutty
 rye
-s
 sabbatical
 saber
 saber-rattling
@@ -35638,7 +35620,6 @@ systemic
 systemically
 systole
 systolic
-t
 tab
 tabbouleh
 tabby
@@ -37772,7 +37753,6 @@ tyre
 tyro
 tzar
 tzarina
-u
 ubiquitous
 ubiquitously
 ubiquity
@@ -39254,7 +39234,6 @@ uvula
 uvulae
 uvular
 uxorious
-v
 vacancy
 vacant
 vacantly
@@ -39896,7 +39875,6 @@ vulturous
 vulva
 vulvae
 vying
-w
 wackiness
 wacko
 wacky
@@ -41035,7 +41013,6 @@ wryness
 wurst
 wuss
 wussy
-x
 x-axes
 x-axis
 xenon
@@ -41050,7 +41027,6 @@ x-ray
 xylem
 xylophone
 xylophonist
-y
 ya
 yacht
 yachting
@@ -41170,7 +41146,6 @@ yup
 yuppie
 yuppy
 yurt
-z
 zaniness
 zany
 zap
