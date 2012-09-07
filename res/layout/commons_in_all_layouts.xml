@@ -16,6 +16,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
     
+        <Spinner
+            android:id="@+id/maximum_words"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:prompt="@string/words_prompt"
+            android:entries="@array/words" />
+        <Spinner
+            android:id="@+id/ninimum_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:prompt="@string/characters_prompt"
+            android:entries="@array/characters" />
+
 	    <Button
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"

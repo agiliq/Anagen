@@ -7,5 +7,21 @@
     <string name="getAnagramsButton">Show Anagrams</string>
     <string name="title_activity_anagrams">Anagrams:</string>
     <string name="getAnagramsCandidateButton">Show Candidates</string>
+    <string name="words_prompt">Select the maximum number of words for your anagrams:</string>
+    <string name="characters_prompt">Select the minimum number of characters for each word:</string>
+    
+    <string-array name="words">
+        <item>Max. Words</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    
+    <string-array name="characters">
+        <item>Min. Characters</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 
 </resources>
