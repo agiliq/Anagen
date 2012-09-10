@@ -30,12 +30,6 @@
             android:prompt="@string/characters_prompt"
             android:entries="@array/characters"
             android:layout_weight="1" />
-
-	    <Button
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:onClick="getAnagramsButtonHandler"
-	        android:text="@string/getAnagramsButton" />
 	    
 	    <Button
 	        android:layout_width="wrap_content"
