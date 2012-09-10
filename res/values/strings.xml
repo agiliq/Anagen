@@ -6,7 +6,6 @@
     <string name="inputWordField">Enter a word</string>
     <string name="getAnagramsButton">Show Anagrams</string>
     <string name="title_activity_anagrams">Anagrams:</string>
-    <string name="getAnagramsCandidateButton">Show Candidates</string>
     <string name="words_prompt">Select the maximum number of words for your anagrams:</string>
     <string name="characters_prompt">Select the minimum number of characters for each word:</string>
     
