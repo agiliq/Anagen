@@ -61,20 +61,6 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-
-//	getAnagrams() performs permutations of the phrase and checks each result to the wordListSet.
-	private void getAnagrams(String prefix, String str) {
-		int n = str.length();
-		if (n == 0){
-			if(wordListSet.contains(prefix)){
-				anagramsSet.add(prefix);
-			}
-		}
-		else {
-			for (int i = 0; i < n; i++)
-				getAnagrams(prefix + str.charAt(i),	str.substring(0, i) + str.substring(i + 1, n));
-		}
-	}
 	
 	public void getAnagramsCandidateButtonHandler(View getAnagramsCandidateButton){
 		String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
