@@ -54,33 +54,6 @@ public class AnagramsActivity extends Activity {
     	anagramsList.setAdapter(anagramsAdapter);
     }
     
-    public void getAnagramsButtonHandler(View getAnagramsButton){
-    	String localTAG = TAG.concat("getAnagramsButtonHandler");
-			Log.d(localTAG, "getAnagramsButton Pressed");
-		inputWord = inputWordField.getText().toString().toLowerCase();
-			Log.d(localTAG, "inputWord = " + inputWord);
-			
-			if(inputWord.equals("")){		//Empty Field Validation
-				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
-				return;
-			}
-			
-		String phrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
-			Log.d(localTAG, "phrase = " + phrase);
-			
-		anagramsSet=new TreeSet<String>();
-		getAnagrams("", phrase);
-			Log.d(localTAG, anagramsSet.toString());
-			
-		ArrayList<String> newAnagrams= new ArrayList<String>(anagramsSet);
-			Log.d(localTAG, newAnagrams.toString());
-			
-		ArrayAdapter<String> anagramsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, newAnagrams);
-        	Log.d(localTAG+"-anagramsAdapter", anagramsAdapter.toString());
-        
-    	anagramsList.setAdapter(anagramsAdapter);
-    }
-    
 //	getAnagrams() performs permutations of the phrase and checks each result to the wordListSet.
 	private void getAnagrams(String prefix, String str) {
 		int n = str.length();
