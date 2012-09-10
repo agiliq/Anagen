@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class MainActivity extends Activity {
 
 	static String TAG = "MainActivity.", inputWord;
 	private TextView inputWordField;
+	private Spinner max_words;
+	private Spinner min_characters;
 	static TreeSet<String> wordListSet;
 	private TreeSet<String> anagramsSet, permutationSet;
 	private Iterator<String> itr;
@@ -33,6 +36,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		inputWordField = (TextView) findViewById(R.id.inputWordField);
+		max_words= (Spinner) findViewById(R.id.maximum_words);
+		min_characters= (Spinner) findViewById(R.id.minimum_characters);
 		getWordListSet();
 	}
 	
@@ -108,6 +113,16 @@ public class MainActivity extends Activity {
 				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
 				return;
 			}
+		
+		try{
+			Integer maximumWords= Integer.parseInt(max_words.getSelectedItem().toString());
+				Log.d(localTAG+".maximumWords", maximumWords.toString());
+			Integer minimumCharacters= Integer.parseInt(min_characters.getSelectedItem().toString());
+				Log.d(localTAG+".minimumCharacters", minimumCharacters.toString());
+		} catch(NumberFormatException e){
+			Toast.makeText(this, "Select a value for the characters and words", Toast.LENGTH_LONG).show();
+			return;
+		}
 		
 		String joinedPhrase=inputWord.replaceAll("[^a-z]+", "");	//Eliminated special characters
 			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
