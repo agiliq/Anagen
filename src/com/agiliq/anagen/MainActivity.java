@@ -114,10 +114,11 @@ public class MainActivity extends Activity {
 				return;
 			}
 		
+		Integer maximumWords, minimumCharacters;
 		try{
-			Integer maximumWords= Integer.parseInt(max_words.getSelectedItem().toString());
+			maximumWords= Integer.parseInt(max_words.getSelectedItem().toString());
 				Log.d(localTAG+".maximumWords", maximumWords.toString());
-			Integer minimumCharacters= Integer.parseInt(min_characters.getSelectedItem().toString());
+			minimumCharacters= Integer.parseInt(min_characters.getSelectedItem().toString());
 				Log.d(localTAG+".minimumCharacters", minimumCharacters.toString());
 		} catch(NumberFormatException e){
 			Toast.makeText(this, "Select a value for the characters and words", Toast.LENGTH_LONG).show();
@@ -141,12 +142,18 @@ public class MainActivity extends Activity {
 			getCandidate(itr.next());
 //				Log.d(localTAG+"-stack", correct.toString());
 			temp=new Stack<String>();
+			int count_of_words=0;
 			while(!correct.empty()){
 				poppedoutString=correct.pop();
+				if(poppedoutString.length() < minimumCharacters){
+					length_of_stack_contents=0;
+					break;
+				}
+				count_of_words++;
 				length_of_stack_contents+=poppedoutString.length();
 				temp.push(poppedoutString);
 			}
-			if(length_of_stack_contents==joinedPhrase.length()){
+			if(length_of_stack_contents==joinedPhrase.length() && count_of_words <= maximumWords){
 				Log.d(localTAG+"-stack", temp.toString());
 			}
 		}
