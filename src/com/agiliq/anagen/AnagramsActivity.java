@@ -124,8 +124,14 @@ public class AnagramsActivity extends Activity {
 		
 		ArrayAdapter<String> anagramsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, newAnagrams);
     		Log.d(localTAG+"-anagramsAdapter", anagramsAdapter.toString());
-    
-	anagramsList.setAdapter(anagramsAdapter);
+    		
+		if(anagramsAdapter.isEmpty()){
+			anagramsList.setVisibility(View.INVISIBLE);
+			Toast.makeText(this, "Sorry. No Anagrams found.", Toast.LENGTH_LONG).show();
+		} else{
+			anagramsList.setVisibility(View.VISIBLE);
+			anagramsList.setAdapter(anagramsAdapter);
+		}
 	}
 //	getAllPermutations() performs permutations of the joinedPhrase.
 	private void getAllPermutations(String prefix, String str) {

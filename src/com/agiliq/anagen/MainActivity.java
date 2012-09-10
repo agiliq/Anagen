@@ -129,11 +129,15 @@ public class MainActivity extends Activity {
 		
 		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
 			Log.d(localTAG, anagramsList.toString());
-	
-		Intent intent=new Intent(this, AnagramsActivity.class);
-		intent.putStringArrayListExtra("com.agiliq.anagen."+TAG+"-anagrams", anagramsList);
-			Log.d(localTAG, intent.toString());
-		startActivity(intent);
+			
+		if(anagramsList.isEmpty()){
+			Toast.makeText(this, "Sorry. No Anagrams found.", Toast.LENGTH_LONG).show();
+		} else{
+			Intent intent=new Intent(this, AnagramsActivity.class);
+			intent.putStringArrayListExtra("com.agiliq.anagen."+TAG+"-anagrams", anagramsList);
+				Log.d(localTAG, intent.toString());
+			startActivity(intent);
+		}
 	}
 	
 //	getAllPermutations() performs permutations of the joinedPhrase.
