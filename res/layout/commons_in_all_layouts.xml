@@ -21,13 +21,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:prompt="@string/words_prompt"
-            android:entries="@array/words" />
+            android:entries="@array/words"
+            android:layout_weight="1" />
         <Spinner
-            android:id="@+id/ninimum_characters"
+            android:id="@+id/minimum_characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:prompt="@string/characters_prompt"
-            android:entries="@array/characters" />
+            android:entries="@array/characters"
+            android:layout_weight="1" />
 
 	    <Button
 	        android:layout_width="wrap_content"
