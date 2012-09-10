@@ -62,33 +62,6 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	public void getAnagramsButtonHandler(View getAnagramsButton) {
-		String localTAG = TAG.concat("getAnagramsButtonHandler");
-			Log.d(localTAG, "getAnagramsButton Pressed");
-		inputWord = inputWordField.getText().toString().toLowerCase();
-			Log.d(localTAG, "inputWord = " + inputWord);
-			
-			if(inputWord.equals("")){		//Empty Field Validation
-				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
-				return;
-			}
-			
-		String phrase=inputWord.replaceAll("[^a-z ]+", "");	//Eliminated special characters except space
-			Log.d(localTAG, "phrase = " + phrase);
-
-		anagramsSet=new TreeSet<String>();
-		getAnagrams("", phrase);
-			Log.d(localTAG, anagramsSet.toString());
-		
-		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
-			Log.d(localTAG, anagramsList.toString());
-		
-		Intent intent=new Intent(this, AnagramsActivity.class);
-		intent.putStringArrayListExtra("com.agiliq.anagen."+TAG+"-anagrams", anagramsList);
-			Log.d(localTAG, intent.toString());
-		startActivity(intent);
-	}
-
 //	getAnagrams() performs permutations of the phrase and checks each result to the wordListSet.
 	private void getAnagrams(String prefix, String str) {
 		int n = str.length();
