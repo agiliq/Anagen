@@ -54,7 +54,7 @@ public class AnagramsActivity extends Activity {
     	anagramsList.setAdapter(anagramsAdapter);
     }
 	
-	public void getAnagramsCandidateButtonHandler(View getAnagramsCandidateButton){
+	public void getAnagramsButtonHandler(View getAnagramsCandidateButton){
 		String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
 			Log.d(localTAG, "getAnagramsCandidateButton pressed");
 		inputWord = inputWordField.getText().toString().toLowerCase();
@@ -92,7 +92,7 @@ public class AnagramsActivity extends Activity {
 		while(itr.hasNext()){
 			correct=new Stack<String>();
 			length_of_stack_contents=0;
-			getCandidate(itr.next());
+			getAnagrams(itr.next());
 //				Log.d(localTAG+"-stack", correct.toString());
 			temp=new Stack<String>();
 			int count_of_words=0;
@@ -139,7 +139,7 @@ public class AnagramsActivity extends Activity {
 		}
 	}
 	
-	private void getCandidate(String str){
+	private void getAnagrams(String str){
 		String first, last=null;
 		int stringLength=str.length();
 		
@@ -151,7 +151,7 @@ public class AnagramsActivity extends Activity {
 			if(MainActivity.wordListSet.contains(first)){
 				correct.push(first);
 				if(stringLength!=str.length())
-					getCandidate(last);
+					getAnagrams(last);
 				break;
 			}
 		}
