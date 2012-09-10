@@ -132,6 +132,8 @@ public class MainActivity extends Activity {
 		getAllPermutations("", joinedPhrase);
 			Log.d(localTAG, permutationSet.toString());
 		
+		anagramsSet=new TreeSet<String>();
+			
 		String poppedoutString;
 		int length_of_stack_contents;
 		Stack<String> temp;
@@ -154,9 +156,25 @@ public class MainActivity extends Activity {
 				temp.push(poppedoutString);
 			}
 			if(length_of_stack_contents==joinedPhrase.length() && count_of_words <= maximumWords){
-				Log.d(localTAG+"-stack", temp.toString());
-			}
+//				Log.d(localTAG+"-stack", temp.toString());
+				String anagram="";
+				for(int i=0; i<count_of_words; i++){
+					anagram=anagram.concat(temp.pop()+" ");
+				}
+				anagram=anagram.trim();
+				anagramsSet.add(anagram);
+					Log.d(localTAG+"-anagram", anagram);
+			}			
 		}
+		Log.d(localTAG+"-anagramsSet", anagramsSet.toString());
+		
+		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
+			Log.d(localTAG, anagramsList.toString());
+	
+		Intent intent=new Intent(this, AnagramsActivity.class);
+		intent.putStringArrayListExtra("com.agiliq.anagen."+TAG+"-anagrams", anagramsList);
+			Log.d(localTAG, intent.toString());
+		startActivity(intent);
 	}
 	
 //	getAllPermutations() performs permutations of the joinedPhrase.
