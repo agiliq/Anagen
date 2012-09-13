@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Stack;
 import java.util.TreeSet;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,18 +23,22 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
 	static String TAG = "MainActivity.", inputWord;
+	Integer maximumWords, minimumCharacters;
 	private TextView inputWordField;
 	private Spinner max_words;
 	private Spinner min_characters;
 	static TreeSet<String> wordListSet;
-	private TreeSet<String> anagramsSet, permutationSet;
-	private Iterator<String> itr;
-	Stack<String> correct;
+	static TreeSet<String> anagramsSet;
+	
+	static ProgressDialog waiting;
+	static Object main_activity_object;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		main_activity_object=this;
 
 		inputWordField = (TextView) findViewById(R.id.inputWordField);
 		max_words= (Spinner) findViewById(R.id.maximum_words);
@@ -65,8 +70,23 @@ public class MainActivity extends Activity {
 	}
 	
 	public void getAnagramsButtonHandler(View getAnagramsCandidateButton){
+		
 		String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
 			Log.d(localTAG, "getAnagramsCandidateButton pressed");
+		
+		final MainActivityBackgroundProcessing bg= new MainActivityBackgroundProcessing();
+			
+		waiting=new ProgressDialog(this);
+		waiting.setIndeterminate(true);
+		waiting.setMessage("Finding Anagrams...");
+		waiting.setOnCancelListener(new OnCancelListener() {
+			
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				bg.cancel(true);
+			}
+		});
+		
 		inputWord = inputWordField.getText().toString().toLowerCase();
 			Log.d(localTAG, "inputWord = " + inputWord);
 			
@@ -74,8 +94,7 @@ public class MainActivity extends Activity {
 				Toast.makeText(this, "Please enter a word", Toast.LENGTH_LONG).show();
 				return;
 			}
-		
-		Integer maximumWords, minimumCharacters;
+			
 		try{
 			maximumWords= Integer.parseInt(max_words.getSelectedItem().toString());
 				Log.d(localTAG+".maximumWords", maximumWords.toString());
@@ -86,92 +105,19 @@ public class MainActivity extends Activity {
 			return;
 		}
 		
-		String joinedPhrase=inputWord.replaceAll("[^a-z]+", "");	//Eliminated special characters
-			Log.d(localTAG, "joinedPhrase = " + joinedPhrase);
-		
-		permutationSet= new TreeSet<String>();
-		getAllPermutations("", joinedPhrase);
-			Log.d(localTAG, permutationSet.toString());
-		
-		anagramsSet=new TreeSet<String>();
-			
-		String poppedoutString;
-		int length_of_stack_contents;
-		Stack<String> temp;
-		itr=permutationSet.iterator();
-		while(itr.hasNext()){
-			correct=new Stack<String>();
-			length_of_stack_contents=0;
-			getAnagrams(itr.next());
-//				Log.d(localTAG+"-stack", correct.toString());
-			temp=new Stack<String>();
-			int count_of_words=0;
-			while(!correct.empty()){
-				poppedoutString=correct.pop();
-				if(poppedoutString.length() < minimumCharacters){
-					length_of_stack_contents=0;
-					break;
-				}
-				count_of_words++;
-				length_of_stack_contents+=poppedoutString.length();
-				temp.push(poppedoutString);
-			}
-			if(length_of_stack_contents==joinedPhrase.length() && count_of_words <= maximumWords){
-//				Log.d(localTAG+"-stack", temp.toString());
-				String anagram="";
-				for(int i=0; i<count_of_words; i++){
-					anagram=anagram.concat(temp.pop()+" ");
-				}
-				anagram=anagram.trim();
-				anagramsSet.add(anagram);
-					Log.d(localTAG+"-anagram", anagram);
-			}			
-		}
-		Log.d(localTAG+"-anagramsSet", anagramsSet.toString());
-		
+		bg.execute(inputWord, maximumWords, minimumCharacters);
+	}
+	
+	void doIntent(){
+		String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
 		ArrayList<String> anagramsList= new ArrayList<String>(anagramsSet);
-			Log.d(localTAG, anagramsList.toString());
-			
-		if(anagramsList.isEmpty()){
-			Toast.makeText(this, "Sorry. No Anagrams found.", Toast.LENGTH_LONG).show();
-		} else{
-			Intent intent=new Intent(this, AnagramsActivity.class);
-			intent.putStringArrayListExtra("com.agiliq.anagen."+TAG+"-anagrams", anagramsList);
-			intent.putExtra("com.agiliq.anagen."+TAG+"-inputword", inputWord);
-			intent.putExtra("com.agiliq.anagen."+TAG+"-maximumWords",maximumWords);
-			intent.putExtra("com.agiliq.anagen."+TAG+"-minimumCharacters",minimumCharacters);
-				Log.d(localTAG, intent.toString());
-			startActivity(intent);
-		}
-	}
-	
-//	getAllPermutations() performs permutations of the joinedPhrase.
-	private void getAllPermutations(String prefix, String str) {
-		int n = str.length();
-		if (n == 0){
-			permutationSet.add(prefix);
-		}
-		else {
-			for (int i = 0; i < n; i++)
-				getAllPermutations(prefix + str.charAt(i),	str.substring(0, i) + str.substring(i + 1, n));
-		}
-	}
-	
-	private void getAnagrams(String str){
-		String first, last=null;
-		int stringLength=str.length();
-		
-		for(int i=0; i<str.length(); i++, stringLength--){
-			first=str.substring(0, stringLength);
-			if(stringLength!=str.length())
-				last=str.substring(stringLength);
-			
-			if(wordListSet.contains(first)){
-				correct.push(first);
-				if(stringLength!=str.length())
-					getAnagrams(last);
-				break;
-			}
-		}
+		Log.d(localTAG, anagramsList.toString());
+		Intent intent=new Intent(this, AnagramsActivity.class);
+		intent.putStringArrayListExtra("com.agiliq.anagen."+TAG+"-anagrams", anagramsList);
+		intent.putExtra("com.agiliq.anagen."+TAG+"-inputword", inputWord);
+		intent.putExtra("com.agiliq.anagen."+TAG+"-maximumWords",maximumWords);
+		intent.putExtra("com.agiliq.anagen."+TAG+"-minimumCharacters",minimumCharacters);
+			Log.d(localTAG, intent.toString());
+		startActivity(intent);
 	}
 }
