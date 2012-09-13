@@ -6,13 +6,16 @@ import java.util.TreeSet;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,7 +25,7 @@ public class AnagramsActivity extends Activity {
 
 	private static String TAG = "AnagramsActivity.", inputWord;
 	Integer maximumWords, minimumCharacters;
-	private TextView inputWordField;
+	private EditText inputWordField;
 	private Spinner max_words;
 	private Spinner min_characters;
 	private ListView anagramsList;
@@ -42,7 +45,7 @@ public class AnagramsActivity extends Activity {
         
         String localTAG = TAG.concat("onCreate");
         
-        inputWordField = (TextView) findViewById(R.id.inputWordField);
+        inputWordField = (EditText) findViewById(R.id.inputWordField);
         max_words= (Spinner) findViewById(R.id.maximum_words);
         min_characters= (Spinner) findViewById(R.id.minimum_characters);
         
@@ -66,6 +69,10 @@ public class AnagramsActivity extends Activity {
     }
 	
 	public void getAnagramsButtonHandler(View getAnagramsCandidateButton){
+		
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(inputWordField.getWindowToken(), 0);
+		
 		String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
 			Log.d(localTAG, "getAnagramsCandidateButton pressed");
 			
