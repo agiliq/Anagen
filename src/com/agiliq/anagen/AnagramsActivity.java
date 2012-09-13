@@ -45,6 +45,9 @@ public class AnagramsActivity extends Activity {
         
         Intent intent=getIntent();
         	Log.d(localTAG, intent.toString());
+    	inputWordField.setText(intent.getStringExtra("com.agiliq.anagen."+MainActivity.TAG+"-inputword"));
+    	max_words.setSelection(intent.getIntExtra("com.agiliq.anagen."+MainActivity.TAG+"-maximumWords", 2) - 1);
+    	min_characters.setSelection(intent.getIntExtra("com.agiliq.anagen."+MainActivity.TAG+"-minimumCharacters", 2) - 1);
         ArrayList<String> recievedAnagrams=intent.getStringArrayListExtra("com.agiliq.anagen."+MainActivity.TAG+"-anagrams");
         	Log.d(localTAG+"-recievedAnagrams", recievedAnagrams.toString());
         

@@ -37,7 +37,9 @@ public class MainActivity extends Activity {
 
 		inputWordField = (TextView) findViewById(R.id.inputWordField);
 		max_words= (Spinner) findViewById(R.id.maximum_words);
+			max_words.setSelection(1);
 		min_characters= (Spinner) findViewById(R.id.minimum_characters);
+			min_characters.setSelection(1);
 		getWordListSet();
 	}
 	
@@ -135,6 +137,9 @@ public class MainActivity extends Activity {
 		} else{
 			Intent intent=new Intent(this, AnagramsActivity.class);
 			intent.putStringArrayListExtra("com.agiliq.anagen."+TAG+"-anagrams", anagramsList);
+			intent.putExtra("com.agiliq.anagen."+TAG+"-inputword", inputWord);
+			intent.putExtra("com.agiliq.anagen."+TAG+"-maximumWords",maximumWords);
+			intent.putExtra("com.agiliq.anagen."+TAG+"-minimumCharacters",minimumCharacters);
 				Log.d(localTAG, intent.toString());
 			startActivity(intent);
 		}

@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">Anagen</string>
+    <string name="app_name_top_label">Anagram Generator</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="inputWordField">Enter a word</string>
@@ -10,14 +11,12 @@
     <string name="characters_prompt">Select the minimum number of characters for each word:</string>
     
     <string-array name="words">
-        <item>Max. Words</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </string-array>
     
     <string-array name="characters">
-        <item>Min. Characters</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
