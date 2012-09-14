@@ -66,6 +66,9 @@ public class AnagramsActivity extends Activity {
         	Log.d(localTAG+"-anagramsAdapter", anagramsAdapter.toString());
         
     	anagramsList.setAdapter(anagramsAdapter);
+    	
+    	InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(inputWordField.getWindowToken(), 0);
     }
 	
 	public void getAnagramsButtonHandler(View getAnagramsCandidateButton){
@@ -128,5 +131,10 @@ public class AnagramsActivity extends Activity {
 			anagramsList.setVisibility(View.VISIBLE);
 			anagramsList.setAdapter(anagramsAdapter);
 		}
+	}
+	
+	public void gotoHelpActivity(View v){
+		Intent i= new Intent(this, HelpActivity.class);
+		startActivity(i);
 	}
 }

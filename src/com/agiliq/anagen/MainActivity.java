@@ -15,7 +15,6 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -118,5 +117,10 @@ public class MainActivity extends Activity {
 		intent.putExtra("com.agiliq.anagen."+TAG+"-minimumCharacters",minimumCharacters);
 			Log.d(localTAG, intent.toString());
 		startActivity(intent);
+	}
+	
+	public void gotoHelpActivity(View v){
+		Intent i= new Intent(this, HelpActivity.class);
+		startActivity(i);
 	}
 }

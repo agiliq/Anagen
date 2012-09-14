@@ -11,20 +11,16 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name_top_label"
             android:screenOrientation="portrait" >
-            
-            <intent-filter android:label="@string/app_name">
+            <intent-filter android:label="@string/app_name" >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            
         </activity>
-        
         <activity
             android:name=".AnagramsActivity"
             android:label="@string/app_name_top_label"
@@ -33,7 +29,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.agiliq.anagen.MainActivity" />
         </activity>
-        
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/app_name_top_label" >
+        </activity>
     </application>
 
 </manifest>

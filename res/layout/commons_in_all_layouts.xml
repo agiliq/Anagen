@@ -3,13 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <EditText
-        android:id="@+id/inputWordField"
-        android:layout_width="300dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/inputWordField"
-        android:selectAllOnFocus="true"
-        android:singleLine="true" />
+        android:orientation="horizontal" >
+        
+	    <EditText
+	        android:id="@+id/inputWordField"
+	        android:layout_width="250dp"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/inputWordField"
+	        android:selectAllOnFocus="true"
+	        android:singleLine="true" />
+	
+	    <ImageButton
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/question"
+	        android:adjustViewBounds="true"
+	        android:onClick="gotoHelpActivity"
+	        android:contentDescription="@string/help_description" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

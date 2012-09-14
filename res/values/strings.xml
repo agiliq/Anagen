@@ -9,17 +9,26 @@
     <string name="title_activity_anagrams">Anagrams:</string>
     <string name="words_prompt">Select the maximum number of words for your anagrams:</string>
     <string name="characters_prompt">Select the minimum number of characters for each word:</string>
-    
+    <string name="help_description">What is Anagen?</string>
+    <string name="description">Welcome to Anagen.\nYour sweet way of playing with words.</string>
+    <string name="description2">Controls:</string>
+    <string name="controls">Controls:</string>
+    <string name="controls_description">You first enter a phrase to find the anagrams for.\n\nThen you select the Maximum number of words you\'d expect to have in your anagram, 
+        and the minimum number of characters for each word.\nThis is done by choosing any of the options from the two drop down lists.\n\nTap \"Show Anagrams\" and there you go, you got your result.</string>
+    <string name="have_fun">\n\nHave Fun :-}</string>
+
     <string-array name="words">
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </string-array>
-    
     <string-array name="characters">
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </string-array>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_help">HelpActivity</string>
 
 </resources>
