@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+import com.flurry.android.FlurryAgent;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -47,6 +49,12 @@ public class MainActivity extends Activity {
 		min_characters= (Spinner) findViewById(R.id.minimum_characters);
 			min_characters.setSelection(1);
 		getWordListSet();
+	}
+	
+	public void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, "KZDW2M8ZY79VFHSWH69V");
 	}
 	
 //	getWordListSet() accesses wordlist.txt and retrieves its contents into wordListSet.
@@ -122,5 +130,11 @@ public class MainActivity extends Activity {
 	public void gotoHelpActivity(View v){
 		Intent i= new Intent(this, HelpActivity.class);
 		startActivity(i);
+	}
+	
+	public void onStop()
+	{
+		super.onStop();
+		FlurryAgent.onEndSession(this);
 	}
 }

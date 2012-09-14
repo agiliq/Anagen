@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Stack;
 import java.util.TreeSet;
 
+import com.flurry.android.FlurryAgent;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -70,6 +72,12 @@ public class AnagramsActivity extends Activity {
     	InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(inputWordField.getWindowToken(), 0);
     }
+    
+    public void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, "KZDW2M8ZY79VFHSWH69V");
+	}
 	
 	public void getAnagramsButtonHandler(View getAnagramsCandidateButton){
 		
@@ -136,5 +144,11 @@ public class AnagramsActivity extends Activity {
 	public void gotoHelpActivity(View v){
 		Intent i= new Intent(this, HelpActivity.class);
 		startActivity(i);
+	}
+	
+	public void onStop()
+	{
+		super.onStop();
+		FlurryAgent.onEndSession(this);
 	}
 }
