@@ -64,12 +64,6 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
 	
 	public void getAnagramsButtonHandler(View getAnagramsCandidateButton){
 		
