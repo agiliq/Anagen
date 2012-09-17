@@ -70,8 +70,8 @@ public class AnagramsActivity extends Activity {
     	anagramsList.setAdapter(anagramsAdapter);
     	
     	InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(inputWordField.getWindowToken(), 0);
-    }
+		imm.hideSoftInputFromWindow(inputWordField.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+	}
     
     public void onStart()
 	{

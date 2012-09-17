@@ -23,6 +23,7 @@
 	        android:adjustViewBounds="true"
 	        android:onClick="gotoHelpActivity"
 	        android:contentDescription="@string/help_description" />
+
     </LinearLayout>
 
     <LinearLayout
