@@ -15,7 +15,7 @@ public class AnagramsActivityBackgroundProcessing extends AsyncTask<Object, Obje
 	
 	@Override
 	protected void onPreExecute(){
-		MainActivity.waiting.show();
+		AnagramsActivity.waiting.show();
 	}
 	
 	@Override
