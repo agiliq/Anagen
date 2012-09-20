@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import com.flurry.android.FlurryAgent;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,11 +15,16 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.flurry.android.FlurryAgent;
 
 public class MainActivity extends Activity {
 
@@ -48,6 +51,17 @@ public class MainActivity extends Activity {
 			max_words.setSelection(1);
 		min_characters= (Spinner) findViewById(R.id.minimum_characters);
 			min_characters.setSelection(1);
+			
+		inputWordField.setOnEditorActionListener(new OnEditorActionListener() {
+			
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(inputWordField.getWindowToken(), 0);
+				return true;
+			}
+		});
+		
 		getWordListSet();
 	}
 	

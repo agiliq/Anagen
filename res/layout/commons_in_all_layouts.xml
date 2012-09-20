@@ -14,7 +14,8 @@
 	        android:layout_height="wrap_content"
 	        android:hint="@string/inputWordField"
 	        android:selectAllOnFocus="true"
-	        android:singleLine="true" />
+	        android:singleLine="true"
+	        android:imeOptions="actionDone" />
 	
 	    <ImageButton
 	        android:layout_width="wrap_content"
@@ -47,6 +48,7 @@
             android:layout_weight="1" />
 	    
 	    <Button
+	        android:id="@+id/getAnagramsButton"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:onClick="getAnagramsButtonHandler"
