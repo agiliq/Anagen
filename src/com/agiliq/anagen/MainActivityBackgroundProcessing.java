@@ -45,6 +45,10 @@ public class MainActivityBackgroundProcessing extends AsyncTask<Object, Object, 
 		Stack<String> temp;
 		itr=permutationSet.iterator();
 		while(itr.hasNext()){
+			if(isCancelled()){
+				Log.d(localTAG, "cancelled");
+				return null;
+			}
 			correct=new Stack<String>();
 			length_of_stack_contents=0;
 			getAnagrams(itr.next());
@@ -76,8 +80,14 @@ public class MainActivityBackgroundProcessing extends AsyncTask<Object, Object, 
 			
 		return null;
 	}
+	
 //	getAllPermutations() performs permutations of the joinedPhrase.
 	private void getAllPermutations(String prefix, String str) {
+		if(isCancelled()){
+			Log.d("MainActivityBackgroundProcessing.getAllPermutations", "cancelled");
+			return;
+		}
+		
 		int n = str.length();
 		if (n == 0){
 			permutationSet.add(prefix);

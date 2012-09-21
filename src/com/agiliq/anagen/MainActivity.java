@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TreeSet;
 
 import android.app.Activity;
@@ -38,6 +40,7 @@ public class MainActivity extends Activity {
 	
 	static ProgressDialog waiting;
 	static Object main_activity_object;
+	boolean timercancel=false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -91,7 +94,7 @@ public class MainActivity extends Activity {
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(inputWordField.getWindowToken(), 0);
 		
-		String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
+		final String localTAG= TAG.concat("getAnagramsCandidateButtonHandler");
 			Log.d(localTAG, "getAnagramsCandidateButton pressed");
 		
 		final MainActivityBackgroundProcessing bg= new MainActivityBackgroundProcessing();
@@ -104,6 +107,11 @@ public class MainActivity extends Activity {
 			@Override
 			public void onCancel(DialogInterface dialog) {
 				bg.cancel(true);
+				if(timercancel){
+					Toast.makeText((Context) main_activity_object, "The calculation for anagrams took too long. Please try with a smaller phrase.", Toast.LENGTH_LONG).show();
+					Log.d(localTAG+"onCancel", "toast");
+					timercancel=false;
+				}
 			}
 		});
 		
@@ -126,6 +134,22 @@ public class MainActivity extends Activity {
 		}
 		
 		bg.execute(inputWord, maximumWords, minimumCharacters);
+		
+//		This timer task is scheduled for one minute after the getAnagramsButton is pressed and then checks is the ProgressDialog is still active, if it is then
+//		cancel() is called on it.
+		class WaitForSomeTime extends TimerTask{
+			@Override
+			public void run() {
+				Log.d("timertask", "timer out");
+				if(waiting.isShowing()){
+					Log.d("timertask", "cancelling");
+					timercancel=true;
+					waiting.cancel();
+				}
+			}
+		}
+		Timer timer= new Timer();	Log.d("timer", timer.toString());
+		timer.schedule(new WaitForSomeTime(), 60000);	Log.d("timer", timer.toString());
 	}
 	
 	void doIntent(){
